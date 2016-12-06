@@ -107,7 +107,9 @@ router.post('/save', function(req, res, next) {
     	query: {_id: mongojs.ObjectId(_id)},
     	update: {$set: {title: title, content: content}},
     	new: true}, function(err, doc) {
-    			res.redirect('/');			
+    		console.log('결과: !!!!!!!!!');
+    		console.log(doc);
+    		res.redirect('/');			
    		}
    	);
     
@@ -119,6 +121,8 @@ router.post('/delete', function(req, res, next) {
     //메모 삭제
 
     db.memos.remove({_id: mongojs.ObjectId(_id)}, function(err, doc) {
+    	console.log('결과: !!!!!!!!!');
+    	console.log(doc);
     	res.redirect('/');
     });
     
