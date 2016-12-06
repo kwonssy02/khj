@@ -28,6 +28,8 @@ router.get('/', function(req, res, next) {
 		// console.log(req.cookies.sessionID);
 		// console.log(req.sessionID);
 
+		data['memos'] = [];
+		
 		db.users.insert({sessionId: req.sessionID});
 		res.cookie('sessionID', req.sessionID);
 
