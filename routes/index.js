@@ -100,7 +100,15 @@ router.post('/save', function(req, res, next) {
     //메모 수정
 
     db.memos.find({_id: mongojs.ObjectId(_id)}).update({$title: title, $content: content});
-    res.redirect('/');
+    db.memos.findAndModify({
+    	query: {_id: mongojs.ObjectId(_id)},
+    	update: {$set: {title: title, content: content}},
+    	new: true}, function(err, doc) {
+    			res.redirect('/');			
+    		}
+   		}
+   	);
+    
 });
 
 router.post('/delete', function(req, res, next) {
@@ -108,8 +116,10 @@ router.post('/delete', function(req, res, next) {
     var _id = req.body.memoId;
     //메모 삭제
 
-    db.memos.find({_id: mongojs.ObjectId(_id)}).removeOne();
-    res.redirect('/');
+    db.memos.remove({_id: mongojs.ObjectId(_id)}, function(err, doc) {
+    	res.redirect('/');
+    });
+    
 });
 
 module.exports = router;
