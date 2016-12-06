@@ -32,8 +32,8 @@
 
   </script>
 </head>
-<body>
-<form name="memoForm" method="post">
+  <body>
+    <form name="memoForm" method="post">
   
 
 
@@ -50,7 +50,7 @@
         <textarea name="content"><%= content%></textarea><br>
         <input type="button" name="saveButton" onclick="savememo()" value="save">
         <input type="button" name="deleteButton" onclick="deletememo()" value="delete">
-        <input type="hidden" id="memoId" value="<%= memoId %>">
+        <input type="hidden" name="memoId" value="<%= memoId %>">
       <%
         }
       %>
