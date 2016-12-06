@@ -69,11 +69,11 @@ router.get('/memo', function(req, res, next) {
 router.get('/memo/:memoId', function(req, res, next) {
 
 	var sessionId = req.cookies.sessionID;
-	var _id = req.params.memoId;
+	var memoId = req.params.memoId;
 	var data = {};
 	
 	db.memos.findOne({
-	    _id: mongojs.ObjectId(_id)
+	    _id: mongojs.ObjectId(memoId)
 	}, function(err, doc) {
 		console.log('aaaaa')
 		console.log(doc);
@@ -97,17 +97,18 @@ router.post('/create', function(req, res, next) {
 
 router.post('/save', function(req, res, next) {
     var sessionId = req.cookies.sessionID;
-    var _id = req.body.memoId;
+    var memoId = req.body.memoId;
     var title = req.body.title;
     var content = req.body.content;
     //메모 수정
 
     // db.memos.find({_id: mongojs.ObjectId(_id)}).update({$title: title, $content: content});
     db.memos.findAndModify({
-    	query: {_id: mongojs.ObjectId(_id)},
+    	query: {_id: mongojs.ObjectId(memoId)},
     	update: {$set: {title: title, content: content}},
     	new: true}, function(err, doc) {
     		console.log('결과: !!!!!!!!!');
+    		console.log(memoId);
     		console.log(doc);
     		res.redirect('/');			
    		}
@@ -117,11 +118,12 @@ router.post('/save', function(req, res, next) {
 
 router.post('/delete', function(req, res, next) {
     var sessionId = req.cookies.sessionID;
-    var _id = req.body.memoId;
+    var memoId = req.body.memoId;
     //메모 삭제
 
-    db.memos.remove({_id: mongojs.ObjectId(_id)}, function(err, doc) {
+    db.memos.remove({_id: mongojs.ObjectId(memoId)}, function(err, doc) {
     	console.log('결과: !!!!!!!!!');
+    	console.log(memoId);
     	console.log(doc);
     	res.redirect('/');
     });
