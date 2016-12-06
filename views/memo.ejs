@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script type="text/javascript">
+<head>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script type="text/javascript">
 
-      <%
-        if(newFlag) {
-      %>
-        function creatememo() {
-          var memoForm = document.memoForm;
-          memoForm.action = "/create";
-          memoForm.submit();
-        }
-      <%
-        }else {
-      %>
-        function savememo() {
-          var memoForm = document.memoForm;
-          memoForm.action = "/save";
-          memoForm.submit();
-        }
+    <%
+    if(newFlag) {
+    %>
+    function creatememo() {
+      var memoForm = document.memoForm;
+      memoForm.action = "/create";
+      memoForm.submit();
+    }
+    <%
+    }else {
+    %>
+    function savememo() {
+      var memoForm = document.memoForm;
+      memoForm.action = "/save";
+      memoForm.submit();
+    }
 
-        function deletememo() {
-          var memoForm = document.memoForm;
-          memoForm.action = "/delete";
-          memoForm.submit();
-        }
-      <%
-        }
-      %>
-      
-    </script>
-  </head>
-  <body>
-    <form name="memoForm" method="post">
-      <textarea name="title"></textarea><br>
-      <textarea name="content"></textarea><br>
+    function deletememo() {
+      var memoForm = document.memoForm;
+      memoForm.action = "/delete";
+      memoForm.submit();
+    }
+    <%
+    }
+    %>
+
+  </script>
+</head>
+<body>
+<form name="memoForm" method="post">
+  <textarea name="title"></textarea><br>
+  <textarea name="content"></textarea><br>
 
 
-      <%
-        if(newFlag) {
-      %>
-        <input type="button" name="createButton" onclick="creatememo()" value="create">
-      <%
-        }else {
-      %>
-        <input type="button" name="saveButton" onclick="savememo()" value="save">
-        <input type="button" name="deleteButton" onclick="deletememo()" value="delete">
-        <input type="hidden" id="memoId" value="1">
-      <%
-        }
-      %>
-    </form>    
-    
+  <%
+  if(newFlag) {
+  %>
+  <input type="button" name="createButton" onclick="creatememo()" value="create">
+  <%
+  }else {
+  %>
+  <input type="button" name="saveButton" onclick="savememo()" value="save">
+  <input type="button" name="deleteButton" onclick="deletememo()" value="delete">
+  <input type="hidden" id="memoId" value="'<%= memoId %>'">
+  <%
+  }
+  %>
+</form>
 
-  </body>
+
+</body>
 </html>
