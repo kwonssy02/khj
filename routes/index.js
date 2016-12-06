@@ -48,11 +48,14 @@ router.get('/destroy', function(req, res, next) {
     var sessionId = req.cookies.sessionID;
 
     //DB 삭제
-    db.memos.find({sessionId: sessionId}).remove();
-    db.users.find({sessionId: sessionId}).remove();
+    db.memos.remove({sessionId: sessionId}, function(err, doc) {
+    	db.users.remove({sessionId: sessionId}, function(err, doc) {
+	    	res.clearCookie('sessionID');
+    		res.redirect('/');
+	    });
+    });
 
-    res.clearCookie('sessionID');
-    res.redirect('/');
+    
 });
 
 router.get('/memo', function(req, res, next) {
@@ -99,13 +102,12 @@ router.post('/save', function(req, res, next) {
     var content = req.body.content;
     //메모 수정
 
-    db.memos.find({_id: mongojs.ObjectId(_id)}).update({$title: title, $content: content});
+    // db.memos.find({_id: mongojs.ObjectId(_id)}).update({$title: title, $content: content});
     db.memos.findAndModify({
     	query: {_id: mongojs.ObjectId(_id)},
     	update: {$set: {title: title, content: content}},
     	new: true}, function(err, doc) {
     			res.redirect('/');			
-    		}
    		}
    	);
     
