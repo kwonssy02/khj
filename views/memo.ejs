@@ -34,17 +34,20 @@
 </head>
 <body>
 <form name="memoForm" method="post">
-  <textarea name="title"></textarea><br>
-  <textarea name="content"></textarea><br>
+  
 
 
       <%
         if(newFlag) {
       %>
+        <textarea name="title"></textarea><br>
+        <textarea name="content"></textarea><br>
         <input type="button" name="createButton" onclick="creatememo()" value="create">
       <%
         }else {
       %>
+        <textarea name="title"><%= title %></textarea><br>
+        <textarea name="content"><%= content%></textarea><br>
         <input type="button" name="saveButton" onclick="savememo()" value="save">
         <input type="button" name="deleteButton" onclick="deletememo()" value="delete">
         <input type="hidden" id="memoId" value="'<%= memoId %>'">
