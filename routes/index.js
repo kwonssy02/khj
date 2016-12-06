@@ -99,7 +99,7 @@ router.post('/save', function(req, res, next) {
     var content = req.body.content;
     //메모 수정
 
-    db.memos.find({_id: _id}).update({$title: title, $content: content})
+    db.memos.find({_id: mongojs.ObjectId(_id)}).update({$title: title, $content: content})
     res.redirect('/');
 });
 
@@ -107,7 +107,7 @@ router.post('/delete', function(req, res, next) {
     var sessionId = req.cookies.sessionID;
     //메모 삭제
 
-    db.memos.find({_id: _id}).removeOne();
+    db.memos.find({_id: mongojs.ObjectId(_id)}).removeOne();
     res.redirect('/');
 });
 
