@@ -70,7 +70,7 @@ router.get('/memo/:memoId', function(req, res, next) {
 	var data = {};
 	
 	db.memos.findOne({
-	    _id: _id/*mongojs.ObjectId('523209c4561c640000000001')*/
+	    _id: mongojs.ObjectId(_id)
 	}, function(err, doc) {
 		console.log('aaaaa')
 		console.log(doc);
