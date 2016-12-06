@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script type="text/javascript">
+<head>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script type="text/javascript">
 
-    	function destroy() {
-    		location.href = '/destroy';
-    	}
+    function destroy() {
+      location.href = '/destroy';
+    }
 
-    	function newMemo() {
-    		location.href = '/memo';
-    	}
+    function newMemo() {
+      location.href = '/memo';
+    }
 
-    	function modifyMemo(memoId) {
-    		location.href = '/memo/' + memoId;
-    	}
+    function modifyMemo(memoId) {
+      location.href = '/memo/' + memoId;
+    }
 
-    </script>
-  </head>
-  <body>
-    <input type="button" name="destroyButton" onclick="destroy()" value="Destroy Session in Cookie & Remove All Memos"><br>
-    <input type="button" name="newMemo" onclick="newMemo()" value="new memo"><br><br>
+  </script>
+</head>
+<body>
+<input type="button" name="destroyButton" onclick="destroy()" value="Destroy Session in Cookie & Remove All Memos"><br>
+<input type="button" name="newMemo" onclick="newMemo()" value="new memo"><br><br>
 
     <%
     	for(var i=0; i<memos.length; i++) {
